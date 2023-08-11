@@ -51,4 +51,47 @@
       color: red;
     }
   }
+
+  .accounts-container {
+    @extend %flex;
+    margin-top: 40px;
+  }
+  .create-account-form {
+    @include flex(space-between, flex-start, row, 10px);
+    width: 600px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 20px;
+
+    input {
+      height: 30px;
+    }
+
+    .photo-input {
+      background-color: white;
+      height: 22px;
+      border: 1px solid black;
+      margin-bottom: 20px;
+    }
+
+    label {
+      color: white;
+      font-size: 22px;
+    }
+
+    .account-form-left {
+      @include flex(flex-start, center, column, 10px);
+      .name-surname {
+        @include flex(center, center, column, 10px);
+      }
+    }
+    .photo-container {
+      @include flex(center, center, column, 10px);
+
+      img {
+        height: 120px;
+        border-radius: 5px;
+      }
+    }
+  }
 }
