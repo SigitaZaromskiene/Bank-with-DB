@@ -12,6 +12,8 @@ export const GlobalProvider = ({ children }) => {
   const [createAccResponse, setCreateAccResponse] = useState(null);
   const [createData, setCreateData] = useState(null);
   const [list, setList] = useState(null);
+  const [deleteList, setDeleteList] = useState(null);
+  const [blockList, setBlockList] = useState(null);
 
   useEffect(() => {
     if (createData === null) {
@@ -35,6 +37,10 @@ export const GlobalProvider = ({ children }) => {
         setList,
         lastUpdate,
         setLastUpdate,
+        deleteList,
+        setDeleteList,
+        setBlockList,
+        blockList,
       }}
     >
       {children}

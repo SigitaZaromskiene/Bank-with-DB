@@ -81,6 +81,29 @@ app.post("/accounts", (req, res) => {
   );
 });
 
+app.delete("/accounts/:id", (req, res) => {
+  // let sql = `
+  //   SELECT img
+  //   FROM accounts
+  //   WHERE id = ?
+  //   `;
+  // con.query(sql, [req.params.id], (err, result) => {
+  //   if (err) throw err;
+  //   if (result[0].img) {
+  //     fs.unlinkSync("./public/img/" + result[0].img);
+  //   }
+  // });
+
+  const sql = `
+        DELETE FROM accounts
+        WHERE id = ?
+    `;
+  con.query(sql, [req.params.id], (err) => {
+    if (err) throw err;
+    res.json({});
+  });
+});
+
 // app.post("/accounts", (req, res) => {
 //   const sql = `
 //   INSERT INTO accounts (name, surname, sum, blocked, row, img)

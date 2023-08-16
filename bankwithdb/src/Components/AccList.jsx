@@ -8,7 +8,8 @@ const URL = "http://localhost:3005/accounts";
 const IMG = "http://localhost:3005/img/";
 
 function AccList() {
-  const { setList, setErrorMsg, list, lastUpdate } = useContext(Global);
+  const { setList, setErrorMsg, list, lastUpdate, blockList } =
+    useContext(Global);
 
   useEffect(() => {
     axios
@@ -51,7 +52,7 @@ function AccList() {
                   )}
                 </div>
               </div>
-              <ListBtns />
+              <ListBtns li={li} />
               <div
                 style={{
                   width: "150px",
