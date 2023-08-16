@@ -1,6 +1,6 @@
 function SmallBtn({ text, action }) {
   return (
-    <button className="small-btn" onclick={action}>
+    <button className="small-btn" onClick={action}>
       {text}
     </button>
   );
