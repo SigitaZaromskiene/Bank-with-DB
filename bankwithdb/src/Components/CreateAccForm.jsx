@@ -13,8 +13,14 @@ function CreateAccountForm() {
   const [surname, setSurname] = useState("");
   const [imgs, setImg] = useState("");
 
-  const { setAccList, accList, setErrorMsg, errorMsg, setCreateAccResponse } =
-    useContext(Global);
+  const {
+    setCreateData,
+    createData,
+    setErrorMsg,
+    errorMsg,
+    setCreateAccResponse,
+    setList,
+  } = useContext(Global);
 
   const [file, readFile, remImage] = useFile();
 
@@ -24,7 +30,7 @@ function CreateAccountForm() {
 
   const createAccHandler = (e) => {
     e.preventDefault();
-    if (!name || !surname || !file) {
+    if (!name || !surname) {
       setErrorMsg("Please fill all details");
     }
 
@@ -32,13 +38,14 @@ function CreateAccountForm() {
       setErrorMsg("Name or surname is too short");
     }
 
-    setAccList({
+    setCreateData({
       name,
       surname,
       img: file,
       blocked: false,
       sum: 0,
       row: randomNumber(),
+      file,
     });
 
     setName("");
@@ -47,14 +54,14 @@ function CreateAccountForm() {
   };
 
   useEffect(() => {
-    if (accList === null) {
+    if (createData === null) {
       return;
     }
     axios
-      .post(URL, accList, { withCredentials: true })
+      .post(URL, createData, { withCredentials: true })
       .then((res) => setCreateAccResponse(res.data))
       .catch((err) => setErrorMsg(err.message));
-  }, [accList]);
+  }, [createData]);
 
   return (
     <div className="border">

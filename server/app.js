@@ -3,7 +3,7 @@ const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const md5 = require("md5");
 const { v4: uuidv4 } = require("uuid");
-
+const fs = require("fs");
 const mysql = require("mysql");
 
 const app = express();
@@ -33,12 +33,37 @@ app.use(
 app.use(express.json());
 
 app.post("/accounts", (req, res) => {
+  let fileName = null;
+
+  if (req.body.file !== null) {
+    let type = "unknown";
+    let file;
+
+    if (req.body.file.indexOf("data:image/png;base64,") === 0) {
+      type = "png";
+      file = Buffer.from(
+        req.body.file.replace("data:image/png;base64,", ""),
+        "base64"
+      );
+    } else if (req.body.file.indexOf("data:image/jpeg;base64,") === 0) {
+      type = "jpg";
+      file = Buffer.from(
+        req.body.file.replace("data:image/jpeg;base64,", ""),
+        "base64"
+      );
+    } else {
+      file = Buffer.from(req.body.file, "base64");
+    }
+
+    fileName = uuidv4() + "." + type;
+
+    fs.writeFileSync("./public/img/" + fileName, file);
+  }
+
   const sql = `
   INSERT INTO accounts (name, surname, sum, blocked, row, img)
   VALUES (?, ?, ?, ?, ?, ?)
-
-  `;
-
+    `;
   con.query(
     sql,
     [
@@ -47,13 +72,49 @@ app.post("/accounts", (req, res) => {
       req.body.sum,
       req.body.blocked,
       req.body.row,
-      req.body.img,
+      fileName,
     ],
     (err) => {
       if (err) throw err;
       res.json({});
     }
   );
+});
+
+// app.post("/accounts", (req, res) => {
+//   const sql = `
+//   INSERT INTO accounts (name, surname, sum, blocked, row, img)
+//   VALUES (?, ?, ?, ?, ?, ?)
+
+//   `;
+
+//   con.query(
+//     sql,
+//     [
+//       req.body.name,
+//       req.body.surname,
+//       req.body.sum,
+//       req.body.blocked,
+//       req.body.row,
+//       req.body.img,
+//     ],
+//     (err) => {
+//       if (err) throw err;
+//       res.json({});
+//     }
+//   );
+// });
+
+app.get("/accounts", (req, res) => {
+  const sql = `
+  SELECT id, name, surname, sum, blocked, row, img
+  FROM accounts
+ 
+  `;
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    res.json(result);
+  });
 });
 
 app.listen(port, () => {
