@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import { Global } from "./Global";
 
 function BlockBtn({ li, setBlocked, blocked }) {

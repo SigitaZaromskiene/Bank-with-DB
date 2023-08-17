@@ -104,6 +104,20 @@ app.delete("/accounts/:id", (req, res) => {
   });
 });
 
+app.put("/accounts/:id", (req, res) => {
+  const sql = `
+        UPDATE accounts
+        SET sum = ? 
+        WHERE id = ?
+    `;
+  params = [req.body.sum, req.params.id];
+
+  con.query(sql, params, (err) => {
+    if (err) throw err;
+    res.json({});
+  });
+});
+
 // app.post("/accounts", (req, res) => {
 //   const sql = `
 //   INSERT INTO accounts (name, surname, sum, blocked, row, img)

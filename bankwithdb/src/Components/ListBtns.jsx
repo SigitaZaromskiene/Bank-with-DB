@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { Global } from "./Global";
 import axios from "axios";
 import BlockBtn from "./BlockBtn";
+import AddWithdrawMoney from "./AddWithdrawMoney";
 
 const URL = "http://localhost:3005/accounts";
 
@@ -29,18 +30,10 @@ function ListBtns({ li }) {
         {blocked === true ? null : (
           <SmallBtn text="Delete" action={() => setDeleteList(li)}></SmallBtn>
         )}
-
         <BlockBtn li={li} blocked={blocked} setBlocked={setBlocked}></BlockBtn>
       </div>
 
-      {blocked === true ? null : (
-        <div>
-          {" "}
-          <SmallBtn text="Add"></SmallBtn>
-          <input className="sum-input" type="number"></input>
-          <SmallBtn text="Withdraw"></SmallBtn>
-        </div>
-      )}
+      {blocked === true ? null : <AddWithdrawMoney li={li} />}
     </>
   );
 }
