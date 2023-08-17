@@ -18,8 +18,6 @@ function AddWithdrawMoney({ li }) {
     editSumModal,
   } = useContext(Global);
 
-  console.log(editListSum);
-
   const addMoneyHandler = () => {
     if (inputSum >= 1000) {
       setEditSumModal(li);

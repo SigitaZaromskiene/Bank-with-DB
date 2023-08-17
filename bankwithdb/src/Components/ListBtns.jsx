@@ -13,8 +13,6 @@ function ListBtns({ li }) {
 
   const [blocked, setBlocked] = useState(false);
 
-  console.log(li);
-
   useEffect(() => {
     if (deleteList === null) {
       return;
