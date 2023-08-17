@@ -107,10 +107,10 @@ app.delete("/accounts/:id", (req, res) => {
 app.put("/accounts/:id", (req, res) => {
   const sql = `
         UPDATE accounts
-        SET sum = ? 
+        SET sum = ?, blocked = ?
         WHERE id = ?
     `;
-  params = [req.body.sum, req.params.id];
+  params = [req.body.sum, req.body.blocked, req.params.id];
 
   con.query(sql, params, (err) => {
     if (err) throw err;

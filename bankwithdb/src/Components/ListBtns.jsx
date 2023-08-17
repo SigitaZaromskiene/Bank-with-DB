@@ -8,9 +8,12 @@ import AddWithdrawMoney from "./AddWithdrawMoney";
 const URL = "http://localhost:3005/accounts";
 
 function ListBtns({ li }) {
-  const { setDeleteList, deleteList, setLastUpdate } = useContext(Global);
+  const { setDeleteList, deleteList, setLastUpdate, blockList } =
+    useContext(Global);
 
   const [blocked, setBlocked] = useState(false);
+
+  console.log(li);
 
   useEffect(() => {
     if (deleteList === null) {
@@ -27,13 +30,13 @@ function ListBtns({ li }) {
   return (
     <>
       <div className="delete-block">
-        {blocked === true ? null : (
+        {li.blocked === "1" ? null : (
           <SmallBtn text="Delete" action={() => setDeleteList(li)}></SmallBtn>
         )}
         <BlockBtn li={li} blocked={blocked} setBlocked={setBlocked}></BlockBtn>
       </div>
 
-      {blocked === true ? null : <AddWithdrawMoney li={li} />}
+      {li.blocked === "1" ? null : <AddWithdrawMoney li={li} />}
     </>
   );
 }
