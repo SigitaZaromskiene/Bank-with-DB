@@ -12,6 +12,7 @@ function BlockBtn({ li, setBlocked }) {
     setBlockList({
       id: li.id,
       blocked: 1,
+      sum: li.sum,
     });
   };
 
@@ -20,6 +21,7 @@ function BlockBtn({ li, setBlocked }) {
     setBlockList({
       id: li.id,
       blocked: 0,
+      sum: li.sum,
     });
   };
 
@@ -30,7 +32,7 @@ function BlockBtn({ li, setBlocked }) {
     axios
       .put(
         URL + "/" + blockList.id,
-        { blocked: blockList.blocked },
+        { blocked: blockList.blocked, sum: blockList.sum },
         { withCredentials: true }
       )
       .then((res) => {
