@@ -52,7 +52,9 @@ function Accounts() {
       <div className="filter-sort-container">
         <Filter></Filter>
         <SortAcc></SortAcc>
-        <SmallBtn text="Pay taxes" action={payTaxHandler}></SmallBtn>
+        <button className="sm-btn" onClick={payTaxHandler}>
+          Pay taxes
+        </button>
       </div>
     </div>
   );

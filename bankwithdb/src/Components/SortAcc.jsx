@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import { Global } from "./Global";
 
 function SortAcc() {
-  const { setList, list } = useContext(Global);
+  const { setList } = useContext(Global);
 
   const [sorted, setSorted] = useState("");
 

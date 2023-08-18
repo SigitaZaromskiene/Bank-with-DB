@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { Global } from "./Global";
+import SmallBtn from "./SmallBtn";
+import Logout from "./Logout";
 
 function Nav() {
-  const { setRoute, route } = useContext(Global);
+  const { setRoute, route, logged, loggedUserName } = useContext(Global);
   return (
     <nav>
       <div className="nav-left">
@@ -23,18 +25,32 @@ function Nav() {
         </div>
       </div>
       <div className="nav-li-flex">
-        <li
-          className={route === "login" ? "nav-active" : null}
-          onClick={() => setRoute("login")}
-        >
-          Login
-        </li>
-        <li
-          className={route === "register" ? "nav-active" : null}
-          onClick={() => setRoute("register")}
-        >
-          Register
-        </li>
+        {logged ? (
+          <>
+            <p>Hello, {loggedUserName}</p>
+            <li
+              className={route === "logout" ? "nav-active" : null}
+              onClick={() => setRoute("home")}
+            >
+              <Logout />
+            </li>
+          </>
+        ) : (
+          <>
+            <li
+              className={route === "login" ? "nav-active" : null}
+              onClick={() => setRoute("login")}
+            >
+              Login
+            </li>
+            <li
+              className={route === "register" ? "nav-active" : null}
+              onClick={() => setRoute("register")}
+            >
+              Register
+            </li>
+          </>
+        )}
       </div>
     </nav>
   );
