@@ -9,8 +9,7 @@ const URL = "http://localhost:3005/accounts";
 const IMG = "http://localhost:3005/img/";
 
 function AccList() {
-  const { setList, setErrorMsg, list, lastUpdate, blockList, filtered } =
-    useContext(Global);
+  const { setList, setErrorMsg, lastUpdate, filtered } = useContext(Global);
 
   useEffect(() => {
     axios

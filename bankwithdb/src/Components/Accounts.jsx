@@ -29,6 +29,16 @@ function Accounts() {
           setLastUpdate(Date.now());
         });
 
+      axios
+        .put(
+          URL + "/" + li.id,
+          { blocked: li.blocked, sum: li.sum - 5 },
+          { withCredentials: true }
+        )
+        .then((res) => {
+          console.log(res.data);
+          setLastUpdate(Date.now());
+        });
       return li.sum - 5;
     });
     setList(sumUpdate);

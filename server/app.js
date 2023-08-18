@@ -154,6 +154,18 @@ app.get("/accounts", (req, res) => {
   });
 });
 
+app.get("/home", (req, res) => {
+  const sql = `
+  SELECT id, name, surname, sum, blocked, showList, img
+  FROM accounts
+ 
+  `;
+  con.query(sql, (err, result) => {
+    if (err) throw err;
+    res.json(result);
+  });
+});
+
 app.listen(port, () => {
   console.log(`LN is on port number: ${port}`);
 });
