@@ -1,5 +1,5 @@
 import { Global } from "./Global";
-import { useContext, useEfefct } from "react";
+import { useContext } from "react";
 
 function AccSummary() {
   const { list } = useContext(Global);

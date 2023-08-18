@@ -24,10 +24,6 @@ function CreateAccountForm() {
 
   const [file, readFile, remImage] = useFile();
 
-  function randomNumber() {
-    return Math.floor(Math.random() * 50);
-  }
-
   const createAccHandler = (e) => {
     e.preventDefault();
     if (!name || !surname) {
@@ -42,9 +38,9 @@ function CreateAccountForm() {
       name,
       surname,
       img: file,
-      blocked: false,
+      blocked: 0,
       sum: 0,
-      row: randomNumber(),
+      showList: true,
       file,
     });
 

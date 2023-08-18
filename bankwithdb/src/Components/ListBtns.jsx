@@ -8,8 +8,7 @@ import AddWithdrawMoney from "./AddWithdrawMoney";
 const URL = "http://localhost:3005/accounts";
 
 function ListBtns({ li }) {
-  const { setDeleteList, deleteList, setLastUpdate, blockList } =
-    useContext(Global);
+  const { setDeleteList, deleteList, setLastUpdate } = useContext(Global);
 
   const [blocked, setBlocked] = useState(false);
 

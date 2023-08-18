@@ -61,7 +61,7 @@ app.post("/accounts", (req, res) => {
   }
 
   const sql = `
-  INSERT INTO accounts (name, surname, sum, blocked, row, img)
+  INSERT INTO accounts (name, surname, sum, blocked, showList, img)
   VALUES (?, ?, ?, ?, ?, ?)
     `;
   con.query(
@@ -71,7 +71,7 @@ app.post("/accounts", (req, res) => {
       req.body.surname,
       req.body.sum,
       req.body.blocked,
-      req.body.row,
+      req.body.showList,
       fileName,
     ],
     (err) => {
@@ -144,7 +144,7 @@ app.put("/accounts/:id", (req, res) => {
 
 app.get("/accounts", (req, res) => {
   const sql = `
-  SELECT id, name, surname, sum, blocked, row, img
+  SELECT id, name, surname, sum, blocked, showList, img
   FROM accounts
  
   `;

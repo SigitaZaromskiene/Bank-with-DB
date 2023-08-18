@@ -17,6 +17,8 @@ export const GlobalProvider = ({ children }) => {
   const [editListSum, setEditListSum] = useState(null);
   const [editSumModal, setEditSumModal] = useState(null);
 
+  const [filtered, setFiltered] = useState([]);
+
   useEffect(() => {
     if (createData === null) {
       return;
@@ -47,6 +49,8 @@ export const GlobalProvider = ({ children }) => {
         editListSum,
         setEditSumModal,
         editSumModal,
+        filtered,
+        setFiltered,
       }}
     >
       {children}

@@ -3,12 +3,13 @@ import { useEffect, useContext, useState } from "react";
 import { Global } from "./Global";
 import ListBtns from "./ListBtns";
 import axios from "axios";
+import Filter from "./Filter";
 
 const URL = "http://localhost:3005/accounts";
 const IMG = "http://localhost:3005/img/";
 
 function AccList() {
-  const { setList, setErrorMsg, list, lastUpdate, blockList } =
+  const { setList, setErrorMsg, list, lastUpdate, blockList, filtered } =
     useContext(Global);
 
   useEffect(() => {
@@ -20,8 +21,8 @@ function AccList() {
 
   return (
     <div className="accounts-list-container">
-      {list
-        ? list.map((li) => (
+      {filtered
+        ? filtered.map((li) => (
             <li key={li.id}>
               <div
                 style={{
@@ -62,7 +63,7 @@ function AccList() {
                   justifyContent: "center",
                 }}
               >
-                {li.sum.toFixed(2, 0)} &euro;
+                {li.sum} &euro;
               </div>
             </li>
           ))
