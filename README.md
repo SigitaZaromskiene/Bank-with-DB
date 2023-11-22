@@ -1,6 +1,6 @@
 ## 🌟 About
 
-This project is for educational porpuses only. 
+This project is for educational purpose only. 
 
 
 ## 🎯 Project features/goals
